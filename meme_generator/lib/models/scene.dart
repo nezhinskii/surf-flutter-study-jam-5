@@ -39,6 +39,16 @@ class Scene{
     );
   }
 
+  void addShape(Color color, IconData shape) {
+    _objects.add(
+      SceneShape(
+        transformData: const TransformData.identity(),
+        shape: shape,
+        color: color
+      )
+    );
+  }
+
   void removeAt(int index) {
     _objects.removeAt(index);
   }

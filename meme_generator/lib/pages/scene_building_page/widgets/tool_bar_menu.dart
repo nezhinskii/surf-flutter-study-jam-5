@@ -9,6 +9,12 @@ class _ToolBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _ToolBarItem(
+          iconData: Icons.bolt,
+          onTap: () {
+            context.read<SceneBuildingCubit>().addShape(context);
+          },
+        ),
+        _ToolBarItem(
           iconData: Icons.cloud_download_outlined,
           onTap: () {
             context.read<SceneBuildingCubit>().addNetworkImage(context);

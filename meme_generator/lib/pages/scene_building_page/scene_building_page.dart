@@ -12,7 +12,7 @@ import 'package:meme_generator/pages/scene_building_page/widgets/scene_widget.da
 import 'package:meme_generator/services/network_service.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
-part 'widgets/add_menu.dart';
+part 'widgets/tool_bar_menu.dart';
 
 class MemeGeneratorScreen extends StatelessWidget {
   const MemeGeneratorScreen({Key? key}) : super(key: key);

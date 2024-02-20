@@ -160,6 +160,11 @@ class _SceneObjectWidgetState extends State<SceneObjectWidget> {
                 color: color
               ),
             ),
+            SceneShape(shape: final shape, color: final color) => Icon(
+              shape,
+              color: color,
+              size: 80,
+            ),
           }
         ),
       ),

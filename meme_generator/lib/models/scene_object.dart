@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:meme_generator/models/transform_data.dart';
 
 sealed class SceneObject{
@@ -38,6 +39,19 @@ class SceneText extends SceneObject{
   SceneText({
     required this.transformData,
     required this.text,
+    required this.color
+  });
+}
+
+class SceneShape extends SceneObject{
+  @override
+  TransformData transformData;
+  final IconData shape;
+  final Color color;
+
+  SceneShape({
+    required this.transformData,
+    required this.shape,
     required this.color
   });
 }

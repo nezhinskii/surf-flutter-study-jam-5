@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meme_generator/models/scene.dart';
+import 'package:meme_generator/pages/scene_building_page/widgets/add_shape_dialog.dart';
 import 'package:meme_generator/pages/scene_building_page/widgets/add_network_image_dialog.dart';
 import 'package:meme_generator/pages/scene_building_page/widgets/add_text_dialog.dart';
 import 'package:meme_generator/pages/scene_building_page/widgets/background_color_dialog.dart';
@@ -64,6 +66,20 @@ class SceneBuildingCubit extends Cubit<SceneBuildingState> {
       return;
     }
     state.scene.addText(result.$1, result.$2);
+    emit(SceneBuildingCommon(scene: state.scene));
+  }
+
+  void addShape(BuildContext context) async {
+    final result = await showDialog<(Color, IconData)>(
+      context: context,
+      builder: (context) {
+        return const AddShapeDialog();
+      },
+    );
+    if (result == null){
+      return;
+    }
+    state.scene.addShape(result.$1, result.$2);
     emit(SceneBuildingCommon(scene: state.scene));
   }
 
