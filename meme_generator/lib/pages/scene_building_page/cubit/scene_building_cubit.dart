@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meme_generator/models/scene.dart';
 import 'package:meme_generator/pages/scene_building_page/widgets/add_network_image_dialog.dart';
 import 'package:meme_generator/pages/scene_building_page/widgets/add_text_dialog.dart';
+import 'package:meme_generator/pages/scene_building_page/widgets/background_color_dialog.dart';
 import 'package:meme_generator/services/interfaces/i_network_service.dart';
 import 'package:meta/meta.dart';
 import 'package:path_provider/path_provider.dart';
@@ -64,6 +65,21 @@ class SceneBuildingCubit extends Cubit<SceneBuildingState> {
     }
     state.scene.addText(result.$1, result.$2);
     emit(SceneBuildingCommon(scene: state.scene));
+  }
+
+  void updateBackgroundColor(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:(context) {
+        return BackgroundColorDialog(
+          initialColor: state.scene.backgroundColor,
+          onChange: (newColor) {
+            state.scene.backgroundColor = newColor;
+            emit(SceneBuildingCommon(scene: state.scene));
+          },
+        );
+      },
+    );
   }
 
   void removeAt(int index){

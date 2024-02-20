@@ -16,29 +16,46 @@ part 'widgets/add_menu.dart';
 
 class MemeGeneratorScreen extends StatelessWidget {
   const MemeGeneratorScreen({Key? key}) : super(key: key);
-  static const _toolBarHeight = 70.0;
+  static const _toolBarHeight = 60.0;
 
   @override
   Widget build(BuildContext context) {
+    final topPadding = MediaQuery.of(context).padding.top;
     return BlocProvider(
       create: (context) => SceneBuildingCubit(Scene.empty(), NetworkService(), WidgetsToImageController()),
       child: Scaffold(
-          appBar: AppBar(
-            actions: [
-              Builder(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(_toolBarHeight + topPadding),
+            child: Padding(
+              padding:  EdgeInsets.only(top: topPadding),
+              child: Builder(
                 builder: (context) {
-                  return GestureDetector(
-                    onTap: () {
-                      context.read<SceneBuildingCubit>().share();
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Icon(Icons.share, size: 35,),
-                    ),
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          context.read<SceneBuildingCubit>().updateBackgroundColor(context);
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(Icons.palette, size: 35,),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          context.read<SceneBuildingCubit>().share();
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(Icons.share, size: 35,),
+                        ),
+                      )
+                    ],
                   );
                 }
-              )
-            ],
+              ),
+            ),
           ),
           backgroundColor: Theme
               .of(context)
@@ -62,7 +79,7 @@ class MemeGeneratorScreen extends StatelessWidget {
                 child: Container(
                   color: Theme.of(context).colorScheme.background,
                   height: _toolBarHeight,
-                  child: const _AddMenu(),
+                  child: const _ToolBar(),
                 ),
               ),
               BlocConsumer<SceneBuildingCubit, SceneBuildingState>(

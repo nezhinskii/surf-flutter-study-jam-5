@@ -1,26 +1,26 @@
 part of '../scene_building_page.dart';
 
-class _AddMenu extends StatelessWidget {
-  const _AddMenu({Key? key}) : super(key: key);
+class _ToolBar extends StatelessWidget {
+  const _ToolBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _MenuItem(
+        _ToolBarItem(
           iconData: Icons.cloud_download_outlined,
           onTap: () {
             context.read<SceneBuildingCubit>().addNetworkImage(context);
           }
         ),
-        _MenuItem(
+        _ToolBarItem(
           iconData: Icons.photo_library_outlined,
           onTap: () {
             context.read<SceneBuildingCubit>().addLocalImage();
           }
         ),
-        _MenuItem(
+        _ToolBarItem(
           iconData: Icons.text_fields,
           onTap: () {
             context.read<SceneBuildingCubit>().addText(context);
@@ -31,8 +31,8 @@ class _AddMenu extends StatelessWidget {
   }
 }
 
-class _MenuItem extends StatelessWidget {
-  const _MenuItem({
+class _ToolBarItem extends StatelessWidget {
+  const _ToolBarItem({
     Key? key,
     required this.iconData,
     this.onTap,

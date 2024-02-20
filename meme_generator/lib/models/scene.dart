@@ -1,13 +1,13 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:meme_generator/models/scene_object.dart';
 import 'package:meme_generator/models/transform_data.dart';
 
 class Scene{
   final List<SceneObject> _objects;
-  const Scene(this._objects);
+  Color backgroundColor;
+  Scene(this._objects, this.backgroundColor);
   
-  Scene.empty(): _objects = [];
+  Scene.empty(): _objects = [], backgroundColor = Colors.black;
   
   List<SceneObject> get objects => _objects;
   
@@ -28,7 +28,6 @@ class Scene{
       )
     );
   }
-
 
   void addText(String text, Color color) {
     _objects.add(

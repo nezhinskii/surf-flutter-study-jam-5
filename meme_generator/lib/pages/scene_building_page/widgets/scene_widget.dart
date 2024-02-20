@@ -22,15 +22,12 @@ class SceneWidget extends StatelessWidget {
     return SafeArea(
       child: LayoutBuilder(
         builder: (context, constraints) {
-          return Container(
+          return SizedBox(
             height: constraints.maxHeight - bottomPadding,
-            decoration: BoxDecoration(
-              border: Border.all(color: Theme.of(context).colorScheme.outline, width: 3)
-            ),
             child: WidgetsToImage(
               controller: widgetsToImageController,
               child: ColoredBox(
-                color: Colors.black,
+                color: scene.backgroundColor,
                 child: Stack(
                   fit: StackFit.expand,
                   children: List.generate(
